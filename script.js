@@ -10,6 +10,9 @@ snake[0] = {
     y: 8 * box
 }
 
+//Função de movimentação
+let direction = "right";
+
 function criarBG() {
     //Cor do fundo
     context.fillStyle = "lightgreen";
@@ -26,6 +29,30 @@ function criarCobrinha(){
     }
 }
 
+//Main
+function iniciarJogo() {
+    criarBG();
+    criarCobrinha();
 
-criarBG();
-criarCobrinha();
+    //Posição inicial
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    //Condicionais
+    if(direction == "right") snakeX += box;
+    if(direction == "left") snakeX -= box;
+    if(direction == "up") snakeY -= box;
+    if(direction == "down") snakeY += box;
+
+    snake.pop();
+
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    //Pesquisar
+    snake.unshift(newHead);
+}
+
+let jogo = setInterval(iniciarJogo, 100);
