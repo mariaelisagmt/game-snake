@@ -12,6 +12,11 @@ snake[0] = {
 
 //Função de movimentação
 let direction = "right";
+//Comida
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) *  box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 function criarBG() {
     //Cor do fundo
@@ -27,6 +32,12 @@ function criarCobrinha(){
         context.fillStyle = "green";
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
+}
+
+//Comidinha
+function drawFood() {
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box);
 }
 
 //Eventos de movimentação
@@ -50,6 +61,7 @@ function iniciarJogo() {
 
     criarBG();
     criarCobrinha();
+    drawFood();
 
     //Posição inicial
     let snakeX = snake[0].x;
